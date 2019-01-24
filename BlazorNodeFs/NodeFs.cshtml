@@ -1,0 +1,64 @@
+﻿@inherits BlazorNodeFs.NodeFsComponent;
+@using Microsoft.JSInterop;
+
+<div class="center node-container paddding">
+    <div class="node-container-stick">
+        <h3 style="text-align:center">Blazor - Node.js Filesystem</h3>
+        <div class="center display paddding">
+            <input class="folderInput form-control" bind="@FolderPath" type="text" size="40"
+                   placeholder="Enter your folder path to read files" />
+        </div>
+
+        <div class="paddding">
+            <button class="btn btn-primary center display"
+                    onclick="@RequestForFoldersAsync">
+                Find files
+            </button>
+        </div>
+    </div>
+
+    <ul class="blazor-nodefs-items paddding center">
+        @for (var i = 0; i < files.Count; i++)
+        {
+            <li id="file_@i">@files[i]</li>
+        }
+    </ul>
+</div>
+<style>
+    .node-container {
+        width: 600px;
+    }
+
+    .paddding {
+        padding: 10px 0;
+    }
+
+    .display {
+        display: inline-block;
+    }
+
+    .blazor-nodefs-items {
+        width: auto;
+        height: 500px;
+        overflow: auto;
+        padding: 16px;
+    }
+
+    .blazor-nodefs-items li {
+        list-style: none;
+        background: #f5f5f5;
+        padding: 10px;
+        border: 3px solid #eceff1;
+        cursor: pointer;
+    }
+
+    .blazor-nodefs-items li:hover {
+        background: #e0e0e0;
+    }
+
+    .center {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+</style>
