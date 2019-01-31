@@ -5,11 +5,13 @@
     <div class="node-container-stick">
         <h3 style="text-align:center">Blazor - Node.js Filesystem</h3>
         <div class="center display paddding">
+            @*textbox for input*@
             <input class="folderInput form-control" bind="@FolderPath" type="text" size="40"
                    placeholder="Enter your folder path to read files" />
         </div>
 
         <div class="paddding">
+            @*button for send request*@
             <button class="btn btn-primary center display"
                     onclick="@RequestForFoldersAsync">
                 Find files
@@ -17,6 +19,7 @@
         </div>
     </div>
 
+    @*list item from response*@
     <ul class="blazor-nodefs-items paddding center">
         @for (var i = 0; i < files.Count; i++)
         {

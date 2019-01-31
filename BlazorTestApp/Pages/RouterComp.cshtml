@@ -1,0 +1,39 @@
+@page "/routerComp/{Name}"
+@page "/routerComp"
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+
+<h1>Hello, @Name</h1>
+
+@if (@UserType == "admin")
+{
+    <h3>Displaying Admin dashboard.</h3>
+}
+
+@if (@UserType == "user")
+{
+    <h3>Displaying User dashboard.</h3>
+}
+
+@if (@UserType != "user" && @UserType != "admin")
+{
+    <h3>Haha, No dashboard for Temp Users.</h3>
+}
+
+
+@functions {
+    [Parameter]
+    private string Name { get; set; }
+    private string UserType = null;
+
+    protected override void OnInit()
+    {
+        if (Name == null)
+        {
+            Name = "Temp User";
+        }
+        var uri = new Uri(UriHelper.GetAbsoluteUri());
+        UserType = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query).TryGetValue("userType", out var type) ? type.First() : "nothing";
+
+        Console.WriteLine(UserType);
+    }
+}

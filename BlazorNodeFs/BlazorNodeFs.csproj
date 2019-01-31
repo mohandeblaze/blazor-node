@@ -6,6 +6,13 @@
     <IsPackable>true</IsPackable>
     <BlazorLinkOnBuild>false</BlazorLinkOnBuild>
     <LangVersion>7.3</LangVersion>
+    <PackageId>BlazorNodeFs-demo</PackageId>
+    <Authors>Mohan</Authors>
+    <Company>Mohan</Company>
+    <Product />
+    <RepositoryUrl>https://github.com/mohandeblaze/blazor-node.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://github.com/mohandeblaze/blazor-node/blob/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>

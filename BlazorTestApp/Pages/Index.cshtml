@@ -1,9 +1,48 @@
 ﻿@page "/"
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
 
-<h1>Hello, world!</h1>
+<h1>Route Using HyperLinks</h1>
 
-Welcome to your new app.
+<h4>
+    <a href="/RouterComp">Go to Router Component without a parameter. ("/RouterComp")</a>
+</h4>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h4>
+    <a href="/RouterComp/Admin">Go to Router Component with a parameter. ("/RouterComp/Admin")</a>
+</h4>
 
-<NodeFs FolderPath="/development" />
+<br />
+
+<h1>Route Using C#</h1>
+
+<h4 onclick="@withoutParam">Go to Router Component "/RouterComp"</h4>
+<h4 onclick="@withAdminParam">Go to Router Component "/RouterComp/Admin?userType=admin" with query</h4>
+<h4 onclick="@withUserParam">Go to Router Component "/RouterComp/User?userType=user" with query</h4>
+
+<br />
+<br />
+<NodeFs FolderPath="/" />
+
+
+@functions {
+    private void withoutParam()
+    {
+        UriHelper.NavigateTo("/RouterComp");
+    }
+
+    private void withAdminParam()
+    {
+        UriHelper.NavigateTo("/RouterComp/Admin?userType=admin");
+    }
+
+    private void withUserParam()
+    {
+        UriHelper.NavigateTo("/RouterComp/User?userType=user");
+    }
+}
+
+<style>
+    h4 {
+        cursor: pointer;
+    }
+</style>

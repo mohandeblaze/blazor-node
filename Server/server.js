@@ -8,7 +8,7 @@ var _path = require("path");
 var server = http.createServer(function(req, res) {
   var urlValue = url.parse(req.url, true);
   var parsedPath = urlValue.pathname.replace("/", "");
-  console.log(`LOG: Request path is ${parsedPath}`);
+  console.log(`Request path is ${parsedPath}, proceeding send response.`);
 
   var chosenHandler =
     typeof routes[parsedPath] !== "undefined"
@@ -24,7 +24,6 @@ var server = http.createServer(function(req, res) {
       var jsonString =
         typeof content !== "undefined" ? JSON.stringify(content, null, 4) : "";
       res.end(jsonString);
-      //   console.log(`LOG: Response is ${jsonString}`);
     });
   });
 });
@@ -51,7 +50,9 @@ var routes = {
 var files = function(data) {
   if (data.path) {
     try {
-      return fs.readdirSync(_path.resolve(`/`, `${data.path}`));
+      return fs.readdirSync(
+        _path.resolve(`/`, `${data.path.replace("E:\\", "")}`)
+      );
     } catch (error) {
       return ["Given path doesn't exist"];
     }
