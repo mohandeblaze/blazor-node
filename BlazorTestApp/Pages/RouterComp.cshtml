@@ -1,22 +1,25 @@
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
 @page "/routerComp/{Name}"
 @page "/routerComp"
-@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
 
 <h1>Hello, @Name</h1>
 
 @if (@UserType == "admin")
 {
     <h3>Displaying Admin dashboard.</h3>
+    <img class="align" src="https://previews.123rf.com/images/think4photop/think4photop1307/think4photop130700001/20917163-colorful-plasticine-alphabet-form-word-admin.jpg" />
 }
 
 @if (@UserType == "user")
 {
     <h3>Displaying User dashboard.</h3>
+    <img class="align" src="https://thumbs.dreamstime.com/b/spelling-word-user-using-dice-white-background-spelled-122335388.jpg" />
 }
 
 @if (@UserType != "user" && @UserType != "admin")
 {
     <h3>Haha, No dashboard for Temp Users.</h3>
+    <img class="align" src="https://sixdegreesofkosherbacon.files.wordpress.com/2018/08/limited.png?w=300&h=159" />
 }
 
 
@@ -32,8 +35,15 @@
             Name = "Temp User";
         }
         var uri = new Uri(UriHelper.GetAbsoluteUri());
-        UserType = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query).TryGetValue("userType", out var type) ? type.First() : "nothing";
+        UserType = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query).TryGetValue("userType", out var type) ? type.First() : "Temp user";
 
         Console.WriteLine(UserType);
     }
 }
+
+<style>
+    .align {
+        width: auto;
+        height: 300px;
+    }
+</style>
